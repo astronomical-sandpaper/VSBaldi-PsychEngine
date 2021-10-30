@@ -190,6 +190,7 @@ class PlayState extends MusicBeatState
 
 	var limoKillingState:Int = 0;
 	var limo:BGSprite;
+	var table:FlxSprite;
 	var limoMetalPole:BGSprite;
 	var limoLight:BGSprite;
 	var limoCorpse:BGSprite;
@@ -321,6 +322,8 @@ class PlayState extends MusicBeatState
 					curStage = 'school';
 				case 'thorns':
 					curStage = 'schoolEvil';
+				case 'basics' | 'lesson' | 'dismissal':
+					curStage = 'classroom';
 				default:
 					curStage = 'stage';
 			}
@@ -379,7 +382,40 @@ class PlayState extends MusicBeatState
 					stageCurtains.updateHitbox();
 					add(stageCurtains);
 				}
-
+			    case 'classroom':
+				{
+						defaultCamZoom = 0.9;
+						curStage = 'classroom';
+						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('da schoolhouse/baldi/baldi_bg'));
+						bg.antialiasing = true;
+						bg.scrollFactor.set(0.9, 0.9);
+						bg.active = false;
+						add(bg);
+		
+						var floorlol:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('da schoolhouse/baldi/baldi_floor'));
+						floorlol.setGraphicSize(Std.int(floorlol.width * 1.1));
+						floorlol.updateHitbox();
+						floorlol.antialiasing = true;
+						floorlol.scrollFactor.set(0.9, 0.9);
+						floorlol.active = false;
+						add(floorlol);
+	
+						var chair:FlxSprite = new FlxSprite(-600, -400).loadGraphic(Paths.image('da schoolhouse/baldi/baldi_chair'));
+						chair.setGraphicSize(Std.int(chair.width * 1.1));
+						chair.updateHitbox();
+						chair.antialiasing = true;
+						chair.scrollFactor.set(0.9, 0.9);
+						chair.active = false;
+						add(chair);
+		
+						table = new FlxSprite(-600, -200).loadGraphic(Paths.image('da schoolhouse/baldi/baldi_front'));
+						table.setGraphicSize(Std.int(table.width * 0.9));
+						table.updateHitbox();
+						table.antialiasing = true;
+						table.scrollFactor.set(1.3, 1.3);
+						table.active = false;
+				}	
+				
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
@@ -639,6 +675,9 @@ class PlayState extends MusicBeatState
 
 		add(dadGroup);
 		add(boyfriendGroup);
+
+		if (curStage == 'classroom')
+			add(table);
 		
 		if(curStage == 'spooky') {
 			add(halloweenWhite);
@@ -707,6 +746,8 @@ class PlayState extends MusicBeatState
 					gfVersion = 'gf-christmas';
 				case 'school' | 'schoolEvil':
 					gfVersion = 'gf-pixel';
+				case 'classroom':
+					gfVersion = 'gf-chair';
 				default:
 					gfVersion = 'gf';
 			}
@@ -1330,8 +1371,6 @@ class PlayState extends MusicBeatState
 
 				switch (swagCounter)
 				{
-					case 0:
-						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 					case 1:
 						var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 						ready.scrollFactor.set();
