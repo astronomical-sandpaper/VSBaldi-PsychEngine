@@ -2,47 +2,47 @@
 	"storyName": "The Math Week!",
 	"hideFreeplay": false,
 	"weekBackground": "",
+	"weekBefore": "tutorial",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
-	"weekBefore": "tutorial",
 	"startUnlocked": true,
-	"hideStoryMode": false,
-	"weekCharacters": [
-		"baldi",
-		"",
-		""
-	],
 	"songs": [
 		[
 			"Basics",
 			"baldi",
 			[
-				0,
-				220,
-				60
+				255,
+				255,
+				255
 			]
 		],
 		[
 			"Lesson",
 			"baldi",
 			[
-				0,
-				220,
-				60
+				255,
+				255,
+				255
 			]
 		],
 		[
 			"Dismissal",
 			"baldi-mad",
 			[
-				0,
-				220,
-				60
+				255,
+				255,
+				255
 			]
 		]
+	],
+	"hideStoryMode": false,
+	"weekCharacters": [
+		"baldi",
+		"",
+		""
 	],
 	"weekName": "Math Week"
 }
